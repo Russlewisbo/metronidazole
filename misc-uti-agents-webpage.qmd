@@ -23,20 +23,61 @@ Part I is condensed from the metronidazole chapter (Nagel & Aronoff, Ch. 27, *Ma
 For all four drugs, a pharmacokinetic property — absorption, distribution, or site concentration — decides the clinical outcome more than the in vitro MIC does.
 :::
 
+## Learning Objectives
+
+- Explain metronidazole's prodrug activation and why it is selective for anaerobes — and where that selectivity leaves gaps.
+- Recall metronidazole's pharmacokinetics, signature toxicities, the warfarin interaction, and why it was demoted in *C. difficile* infection.
+- Map the three urinary-tract agents — nitrofurantoin, fosfomycin, methenamine — to their mechanisms, niches, and correct clinical roles.
+- Justify why nitrofurantoin and fosfomycin are first-line for cystitis but useless for pyelonephritis, and why methenamine is prophylaxis only.
+- Apply the recent trial evidence (Huttner 2018, ALTAR 2022) that has refined how we use these agents.
+
 # Part I — Metronidazole
 
 ## History and Structure
 
-Azomycin (a 2-nitroimidazole) was isolated from a *Streptomyces* species in 1953; the 5-nitroimidazole derivative metronidazole was synthesized in 1959 and used for trichomoniasis. Its antibacterial potential was discovered serendipitously in 1962, when a patient treated for trichomoniasis had her acute ulcerative gingivitis resolve — the observation that opened the entire anaerobic indication. The class (metronidazole, tinidazole, secnidazole, ornidazole) is defined by an imidazole ring bearing a nitro group at position 5.
+Azomycin (a 2-nitroimidazole) was isolated from a *Streptomyces* species in 1953; the 5-nitroimidazole derivative metronidazole was synthesized in 1959 and used for trichomoniasis. Its antibacterial potential was discovered serendipitously in 1962, when a patient treated for trichomoniasis had her acute ulcerative gingivitis resolve — the observation that opened the entire anaerobic indication. The class (metronidazole, tinidazole, secnidazole, ornidazole) is defined by an imidazole ring bearing a nitro group at position 5 — the business end of the molecule, since everything about mechanism and resistance turns on what happens to that nitro group.
+
+![The 5-nitroimidazole scaffold: an imidazole ring bearing a nitro group at position 5.](misc-uti-agents-images/mtz_structure.png){#fig-structure width="55%"}
 
 ## Mechanism of Action — An Inert Prodrug
 
 Metronidazole is an inert prodrug whose spectrum is set entirely by a target organism's ability to activate it [@Edwards1993; @Dingsdag2018]. Four steps follow: (1) entry by passive diffusion; (2) reductive activation, in which an electron is transferred to the nitro group to form a short-lived, cytotoxic nitroso free radical — a step that establishes a concentration gradient driving further uptake; (3) cytotoxicity, as the activated compound damages DNA and produces strand breaks; and (4) release of inactive end-products.
 
+![Metronidazole is an inert prodrug: the nitro group is reductively activated inside susceptible organisms to a short-lived nitroso radical that damages DNA. Activation itself pulls more drug into the cell.](misc-uti-agents-images/mtz_MOA.png){#fig-moa width="85%"}
+
 ::: {.callout-important}
 ## Why it is selective for anaerobes
 Anaerobes reduce the nitro group using low-redox-potential electron carriers — ferredoxin or flavodoxin, reduced in turn by pyruvate:ferredoxin oxidoreductase (PFOR). Aerobes lack carriers negative enough to activate the drug, and the active form is re-oxidized to prodrug in the presence of oxygen — so activity is confined to anaerobic and microaerophilic niches. *Helicobacter pylori* uses an oxygen-insensitive nitroreductase (RdxA); *Giardia*, *Entamoeba*, and *Trichomonas* carry bacteria-like nitroreductases.
 :::
+
+@fig-selectivity contrasts the two fates of the drug. In the anaerobe, pyruvate:ferredoxin oxidoreductase (PFOR) reduces ferredoxin/flavodoxin, which donates an electron to the nitro group to form the cytotoxic nitroso radical that damages DNA — and activation itself pulls more drug into the cell. In the aerobe, oxygen re-oxidizes the radical straight back to the inert prodrug (futile cycling), so no cytotoxic species accumulates.
+
+```{dot}
+//| label: fig-selectivity
+//| fig-cap: "Metronidazole selectivity. Anaerobes activate the prodrug via PFOR/ferredoxin to a DNA-damaging nitroso radical; in aerobes, oxygen re-oxidizes the radical back to inert prodrug (futile cycling)."
+digraph selectivity {
+    rankdir=TB;
+    node [shape=box, style="rounded,filled", fontname="Helvetica", fillcolor="#e8e8e8", color="#999999", fontcolor="#222222"];
+    edge [fontname="Helvetica", fontsize=10];
+
+    P   [label="Metronidazole\n(inert prodrug)"];
+    C   [label="Intracellular prodrug"];
+    A   [label="Redox environment", shape=diamond, fillcolor="#f5f5f5"];
+    PFOR[label="PFOR reduces\nferredoxin / flavodoxin"];
+    R   [label="Nitroso free radical\n(active, cytotoxic)", fillcolor="#b20e10", color="#7a0a0b", fontcolor="#ffffff"];
+    D   [label="DNA strand breaks\n→ cell death", fillcolor="#b20e10", color="#7a0a0b", fontcolor="#ffffff"];
+    O   [label="O2 re-oxidizes radical"];
+
+    P    -> C    [label="passive diffusion"];
+    C    -> A;
+    A    -> PFOR [label="Anaerobe"];
+    PFOR -> R    [label="electron to -NO2"];
+    R    -> D;
+    R    -> C    [label="drives further uptake", style=dashed, constraint=false];
+    A    -> O    [label="Aerobe"];
+    O    -> P    [label="futile cycling"];
+}
+```
 
 ## Spectrum of Activity
 
@@ -49,14 +90,53 @@ Actinomycosis and *Cutibacterium acnes* infections are not treatable with metron
 
 Its antiprotozoal activity (*Trichomonas vaginalis*, *Giardia*, *Entamoeba histolytica*, *Dientamoeba fragilis*) follows from the same activation biology. This broad activity perturbs the anaerobic gut microbiome, which is part of the argument for preferring alternatives in some luminal indications.
 
+The spectrum, and its gaps, are summarized in @tbl-spectrum. The organizing principle is selectivity by activation: organisms that reduce the nitro group in a low-redox environment are killed, while those that lack the low-potential electron carriers (aerobes and facultative organisms in their aerobic state) or that fail to accumulate the active form (the non-spore-forming gram-positive anaerobes) are not.
+
+| Category | Representative organisms | Metronidazole activity |
+|---|---|---|
+| Gram-negative anaerobes | *Bacteroides*, *Fusobacterium*, *Prevotella*, *Porphyromonas* | Reliable |
+| Gram-positive spore-forming anaerobes | *Clostridium* spp., *Clostridioides difficile* | Reliable (but no longer first-line for CDI) |
+| Non-spore-forming gram-positive anaerobes | *Actinomyces*, *Cutibacterium acnes*, *Lactobacillus*, *Bifidobacterium*, *Propionibacterium* | Intrinsic gap — not covered |
+| Microaerophilic / other | *Helicobacter pylori* (via RdxA) | Active in combination therapy |
+| Microaerophilic protozoa | *Trichomonas vaginalis*, *Giardia*, *Entamoeba histolytica*, *Dientamoeba fragilis* | Reliable |
+| Aerobes and facultative organisms | *Enterobacterales*, streptococci, staphylococci | Not covered |
+
+: Metronidazole spectrum of activity and its intrinsic gaps [@Lofmark2010; @LeCorn2007] {#tbl-spectrum}
+
+::: {.callout-note}
+## Selectivity is set by activation, not the ring
+Two mechanisms enforce anaerobic selectivity: only anaerobes carry electron carriers (ferredoxin/flavodoxin, fed by PFOR) negative enough to reduce the nitro group, and oxygen actively re-oxidizes the active form back to inert prodrug. This is why the drug is useless against aerobes yet retains activity against microaerophilic protozoa — and why the streptococcal co-pathogens of lung abscess (an aerobic/microaerophilic niche) escape it.
+:::
+
 ## Pharmacokinetics
 
-Metronidazole has near-ideal pharmacokinetics for an anti-anaerobe: oral bioavailability approaches 100%, protein binding is under 20%, and tissue penetration is excellent — cerebrospinal fluid concentrations approximate serum even with non-inflamed meninges, and penetration into abscesses, bile, and peritoneal and pancreatic tissue is very good [@Freeman1997]. The half-life is about 8 hours; hepatic oxidation is the main elimination route, yielding an active hydroxy metabolite.
+Metronidazole has near-ideal pharmacokinetics for an anti-anaerobe: oral bioavailability approaches 100%, protein binding is under 20%, and tissue penetration is excellent — cerebrospinal fluid concentrations approximate serum even with non-inflamed meninges, and penetration into abscesses, bile, and peritoneal and pancreatic tissue is very good [@Freeman1997]. The parent half-life is roughly 6–10 hours (mean about 8 hours); hepatic oxidation is the main elimination route, yielding an active hydroxy metabolite that retains 30–65% of the parent's activity and has a longer half-life (~11–13 hours). Killing is **concentration-dependent** (like the aminoglycosides and fluoroquinolones), so the pharmacodynamic driver is **AUC/MIC**, not time above MIC.
 
 ::: {.callout-tip}
 ## Dose adjustment: hepatic yes, renal (mostly) no
 Reduce the dose by 50% in significant hepatic disease. Routine renal adjustment is not required, but patients on intermittent hemodialysis need a supplemental dose after each session. Note the recurring irony: the complete absorption that makes the drug so well distributed is exactly what undermines it in the colonic lumen (see CDI, below).
 :::
+
+## Dosing and the Case for Twice-Daily Administration
+
+Metronidazole has traditionally been dosed every 8 hours, but because killing is concentration-dependent the relevant pharmacodynamic index is AUC/MIC, and a fixed total daily dose meets that target largely regardless of how it is divided. Monte Carlo simulation puts the anaerobic target at AUC/MIC ≥ 70; a total of 1000 mg/day achieves greater than 99% target attainment against *Bacteroides fragilis* at an MIC below 2 mg/L, whether given q8h or q12h [@Sprandel2006; @Lewis2000]. The long parent half-life (~8 hours) and the active hydroxy metabolite (~11–13 hours) together sustain exposure across a 12-hour interval: on 500 mg q12h, measured troughs (~6–7 mg/L) sit at or below the CLSI anaerobe breakpoint (≤ 8 mg/L) while peaks reach ~17–24 mg/L [@Earl1989].
+
+The clinical evidence for q12h dosing is accumulating but remains observational. Earl 1989 is the classic pharmacokinetic anchor: 48 surgical patients on 12-hourly metronidazole had IV troughs averaging 6.7 mg/L, above the MIC of most obligate anaerobes [@Earl1989]. Soule 2018 (single-centre, *n* = 200) found no difference in clinical cure between q8h and q12h in anaerobic or mixed infections, though it lacked culture data [@Soule2018]. The Shah studies tightened this by restricting to culture-proven disease — obligate-anaerobe bacteraemia (2021, *n* = 85; no difference in mortality, length of stay, or escalation) and then *Bacteroides* bloodstream infection specifically (2024, *n* = 242; clinical failure 15% vs 18% and 30-day mortality 15% vs 17%, no significant difference) [@Shah2021; @Shah2024]. No randomized trial exists, and the data do not extend to CDI, CNS infection, or amebiasis, where luminal or sustained high exposure matters. Where they apply, the practical advantages of twice-daily dosing are real: fewer doses, less nursing and pharmacy time, better adherence, and lower cumulative-dose neurotoxicity risk.
+
+## Dosing by Indication
+
+Typical regimens are summarized in @tbl-mtz-dosing. Note the recurring 500 mg unit, the shift toward q12h dosing for many indications, and the requirement to follow amebic disease with a luminal agent. Halve all of these in significant hepatic disease.
+
+| Indication | Typical regimen |
+|---|---|
+| Serious anaerobic infection | 500 mg IV/PO q8–12h |
+| Bacterial vaginosis | 500 mg PO bid × 7 d (or vaginal gel) |
+| Trichomoniasis | 500 mg PO bid × 7 d |
+| Giardiasis | 250 mg PO tid × 5–7 d |
+| Amebic colitis / liver abscess | 500–750 mg PO tid × 7–10 d + luminal agent |
+| *H. pylori* (as part of quadruple therapy) | 500 mg PO bid–tid |
+
+: Metronidazole dosing by indication {#tbl-mtz-dosing}
 
 ## Adverse Effects
 
@@ -92,6 +172,10 @@ Metronidazole was once first-line for *Clostridioides difficile* infection; it n
 ## Why metronidazole failed in CDI
 Two pharmacologic reasons. It is almost completely absorbed in the upper gut, so colonic luminal concentrations are low and variable — and stool concentrations fall as diarrhea resolves, exactly when drug is still needed. And metronidazole resistance in *C. difficile* is emerging. Vancomycin and fidaxomicin, being non-absorbed, deliver reliably high luminal concentrations.
 :::
+
+## Other and Topical Uses
+
+Beyond the core anaerobic and antiprotozoal indications, metronidazole has a tail of niche uses: inflammatory bowel disease (best evidence in perianal Crohn disease and pouchitis), topical dermatologic formulations for rosacea and acne, and historical high-dose use as a radiosensitizer. These are worth recognizing but are not why one reaches for the drug.
 
 ## Other Nitroimidazoles
 
@@ -202,6 +286,32 @@ Side effects are usually mild (nausea, rash); high doses can cause GI upset and 
 | Resistance | Rare | Transport / Fos enzymes | None described |
 
 : The three urinary tract agents side by side {#tbl-uti}
+
+A practical dosing reference is given in @tbl-uti-dosing. Two absolute rules travel with it: nitrofurantoin and fosfomycin treat cystitis but never pyelonephritis, and methenamine is prophylaxis only.
+
+| Agent | Regimen (uncomplicated cystitis / prophylaxis) |
+|---|---|
+| Nitrofurantoin (Macrobid) | 100 mg PO bid × 5 d; prophylaxis 50–100 mg daily |
+| Fosfomycin | 3 g single oral dose (before food); complicated: 3 g q48–72h |
+| Methenamine hippurate | 1 g PO bid — prevention only; needs acidic urine |
+
+: Dosing quick reference for the urinary tract agents {#tbl-uti-dosing}
+
+Their coverage of common uropathogens differs in instructive ways, summarized in @tbl-uti-spectrum. Nitrofurantoin and fosfomycin have defined bacterial spectra with characteristic gaps, whereas methenamine's activity is a chemical rather than a microbiological property — formaldehyde is a nonspecific denaturant active against essentially all uropathogens, provided the urine is acidic and the organism does not raise urinary pH.
+
+| Uropathogen | Nitrofurantoin | Fosfomycin | Methenamine |
+|---|---|---|---|
+| *E. coli* (incl. ESBL) | Reliable (>90%) | Reliable (>95% ESBL) | Active† |
+| *S. saprophyticus* | Reliable | Reliable | Active† |
+| Enterococci (incl. many VRE) | Reliable | Reliable (*E. faecalis*/*E. faecium*) | Active† |
+| *Klebsiella* / *Enterobacter* / *Serratia* | Unreliable | Variable–generally active | Active† |
+| *Proteus* spp. | Intrinsically resistant | Variable | Ineffective (urease → alkaline urine)‡ |
+| *Pseudomonas aeruginosa* | Intrinsically resistant | Variable | Limited |
+| *Acinetobacter* | Intrinsically resistant | Usually resistant | Limited |
+
+: Uropathogen coverage of the three urinary tract agents {#tbl-uti-spectrum}
+
+†Methenamine's formaldehyde is a nonspecific denaturant with broad activity and no described resistance, but it acts only in acidic urine (pH <6) and requires bladder dwell time — so it is a prophylactic, not a treatment, agent. ‡Urease-producing organisms such as *Proteus* alkalinize the urine and block formaldehyde generation [@Gupta2011; @Falagas2016; @Musher1974].
 
 The stewardship rationale unifies them: guidelines favour nitrofurantoin, fosfomycin, and TMP-SMX over fluoroquinolones for uncomplicated cystitis because of less collateral damage to the microbiome and resistome, and methenamine extends the antibiotic-sparing idea to prevention. Their shared limit is that none reaches tissue or serum levels — anything beyond the bladder requires escalation.
 
