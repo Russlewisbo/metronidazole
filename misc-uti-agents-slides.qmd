@@ -72,7 +72,7 @@ The entire anaerobic indication opened from an incidental observation of gingivi
 
 <br>
 
-![](misc-uti-agents-images/mtz_MOA.png){width="800"}
+![](misc-uti-agents-images/mtz_MOA.png){fig-align="center" width="800"}
 
 ::: aside
 The drug does nothing until an organism reduces its nitro group; the short-lived nitroso radical then shreds DNA. Because activation itself pulls more drug into the cell, susceptible organisms accumulate the active form quickly. Everything downstream — selectivity, the resistance mechanisms, the protozoal activity — follows from this single fact [@Edwards1993; @Dingsdag2018].
