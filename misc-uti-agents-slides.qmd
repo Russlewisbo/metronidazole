@@ -100,7 +100,7 @@ Two mechanisms enforce anaerobic selectivity: only anaerobes have electron carri
 - Facultative organisms are not reliably covered
 
 ::: aside
-The gram-positive-anaerobe gap is a key clinical point. When someone reaches for metronidazole to "cover anaerobes," remind them it misses Actinomyces and Cutibacterium acnes entirely — so aAtinomycosis and C. acnes device infections are not metronidazole-treatable. This gap recurs in the lung-abscess story [@Lofmark2010; @LeCorn2007].
+The gram-positive-anaerobe gap is a key clinical point. When someone reaches for metronidazole to "cover anaerobes," remind them it misses Actinomyces and Cutibacterium acnes entirely — so Actinomycosis and C. acnes device infections are not metronidazole-treatable. This gap recurs in the lung-abscess story [@Lofmark2010; @LeCorn2007].
 :::
 
 ## Protozoa and the microbiome
